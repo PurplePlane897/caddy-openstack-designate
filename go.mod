@@ -4,5 +4,5 @@ go 1.14
 
 require (
 	github.com/caddyserver/caddy/v2 v2.3.0
-	github.com/PurplePlane897/libdns-openstack-designate xcaddy
+	github.com/PurplePlane897/libdns-openstack-designate v0.0.1
 )
