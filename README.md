@@ -27,15 +27,11 @@ To use this module for the ACME DNS challenge, [configure the ACME issuer in you
   "challenges": {
     "dns": {
       "provider": {
-        "name": "openstack-designate",
         "region_name": "{env.OS_REGION_NAME}",
-        "tenant_id": "{env.OS_TENANT_ID}",
-        "identity_api_version": "{env.OS_IDENTITY_API_VERSION}",
-        "password": "{env.OS_PASSWORD}",
-        "username": "{env.OS_USERNAME}",
-        "tenant_name": "{env.OS_TENANT_NAME}",
         "auth_url": "{env.OS_AUTH_URL}",
-        "endpoint_type": "{env.OS_ENDPOINT_TYPE}"
+        "auth_type": "v3applicationcredential",
+        "app_credential_id": "{env.OS_APPLICATION_CREDENTIAL_ID}",
+        "app_credential_secret": "{env.OS_APPLICATION_CREDENTIAL_SECRET}"
       }
     }
   }
@@ -48,13 +44,10 @@ or with the Caddyfile:
 tls {
   dns openstack-designate {
     region_name {$OS_REGION_NAME}
-    tenant_id {$OS_TENANT_ID}
-    identity_api_version {$OS_IDENTITY_API_VERSION}
-    password {$OS_PASSWORD}
-    username {$OS_USERNAME}
-    tenant_name {$OS_TENANT_NAME}
     auth_url {$OS_AUTH_URL}
-    endpoint_type {$OS_ENDPOINT_TYPE}
+    auth_type v3applicationcredential
+    app_credential_id {$OS_APPLICATION_CREDENTIAL_ID}
+    app_credential_secret {$OS_APPLICATION_CREDENTIAL_SECRET}
   }
 }
 ```

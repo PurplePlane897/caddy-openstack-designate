@@ -28,13 +28,10 @@ func (Provider) CaddyModule() caddy.ModuleInfo {
 func (p *Provider) Provision(ctx caddy.Context) error {
 	repl := caddy.NewReplacer()
 	p.Provider.AuthOpenStack.RegionName = repl.ReplaceAll(p.Provider.AuthOpenStack.RegionName, "")
-	p.Provider.AuthOpenStack.TenantID = repl.ReplaceAll(p.Provider.AuthOpenStack.TenantID, "")
-	p.Provider.AuthOpenStack.IdentityApiVersion = repl.ReplaceAll(p.Provider.AuthOpenStack.IdentityApiVersion, "")
-	p.Provider.AuthOpenStack.Password = repl.ReplaceAll(p.Provider.AuthOpenStack.Password, "")
 	p.Provider.AuthOpenStack.AuthURL = repl.ReplaceAll(p.Provider.AuthOpenStack.AuthURL, "")
-	p.Provider.AuthOpenStack.Username = repl.ReplaceAll(p.Provider.AuthOpenStack.Username, "")
-	p.Provider.AuthOpenStack.TenantName = repl.ReplaceAll(p.Provider.AuthOpenStack.TenantName, "")
-	p.Provider.AuthOpenStack.EndpointType = repl.ReplaceAll(p.Provider.AuthOpenStack.EndpointType, "")
+	p.Provider.AuthOpenStack.AuthType = repl.ReplaceAll(p.Provider.AuthOpenStack.AuthType, "")
+	p.Provider.AuthOpenStack.ApplicationCredentialId = repl.ReplaceAll(p.Provider.AuthOpenStack.ApplicationCredentialId, "")
+	p.Provider.AuthOpenStack.ApplicationCredentialSecret = repl.ReplaceAll(p.Provider.AuthOpenStack.ApplicationCredentialSecret, "")
 
 	return nil
 }
@@ -66,51 +63,30 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				if d.NextArg() {
 					return d.ArgErr()
 				}
-			case "tenant_id":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.TenantID = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
-			case "identity_api_version":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.IdentityApiVersion = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
-			case "password":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.Password = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
-			case "username":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.Username = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
-			case "tenant_name":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.TenantName = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
-			case "endpoint_type":
-				if d.NextArg() {
-					p.Provider.AuthOpenStack.EndpointType = d.Val()
-				}
-				if d.NextArg() {
-					return d.ArgErr()
-				}
 			case "auth_url":
 				if d.NextArg() {
 					p.Provider.AuthOpenStack.AuthURL = d.Val()
+				}
+				if d.NextArg() {
+					return d.ArgErr()
+				}
+			case "auth_type":
+				if d.NextArg() {
+					p.Provider.AuthOpenStack.AuthType = d.Val()
+				}
+				if d.NextArg() {
+					return d.ArgErr()
+				}
+			case "app_credential_id":
+				if d.NextArg() {
+					p.Provider.AuthOpenStack.ApplicationCredentialID = d.Val()
+				}
+				if d.NextArg() {
+					return d.ArgErr()
+				}
+			case "app_credential_secret":
+				if d.NextArg() {
+					p.Provider.AuthOpenStack.ApplicationCredentialSecret = d.Val()
 				}
 				if d.NextArg() {
 					return d.ArgErr()
