@@ -79,7 +79,7 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				}
 			case "app_credential_id":
 				if d.NextArg() {
-					p.Provider.AuthOpenStack.ApplicationCredentialID = d.Val()
+					p.Provider.AuthOpenStack.ApplicationCredentialId = d.Val()
 				}
 				if d.NextArg() {
 					return d.ArgErr()
