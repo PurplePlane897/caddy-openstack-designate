@@ -1,4 +1,4 @@
-module github.com/caddy-dns/openstack-designate
+module github.com/PurplePlane897/caddy-openstack-designate
 
 go 1.14
 
